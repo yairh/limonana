@@ -1,7 +1,6 @@
 from django.contrib import admin
 from django.urls import reverse
 from .models import Post, Comment, Category, Tag
-from django_summernote.admin import SummernoteModelAdmin
 from django.db.models import TextField
 from tinymce.widgets import AdminTinyMCE
 

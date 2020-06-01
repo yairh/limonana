@@ -36,7 +36,6 @@ INSTALLED_APPS = [
     'django.contrib.messages',
     'django.contrib.staticfiles',
     "blog",
-    'django_summernote',
     "tinymce"
 ]
 
@@ -127,8 +126,15 @@ MEDIA_URL = '/media/'
 MEDIA_ROOT = os.path.join(BASE_DIR, 'media/')
 
 X_FRAME_OPTIONS = 'SAMEORIGIN'
+TINYMCE_JS_URL = os.path.join(MEDIA_URL, "js/tinymce/tinymce.min.js")
+TINYMCE_JS_ROOT = os.path.join(MEDIA_ROOT, "js/tinymce")
+
+
 TINYMCE_DEFAULT_CONFIG = {
-    'plugins': "table,spellchecker,paste,searchreplace",
+    'plugins': "table,spellchecker,paste,searchreplace,hr,"
+               "fullscreen,image imagetools,preview,visualblocks,"
+               "advlist,table advtable,charmap,lists checklist,emoticons,pageembed",
+    'theme': "silver",
     'cleanup_on_startup': True,
     'custom_undo_redo_levels': 10,
 }
