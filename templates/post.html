@@ -1,0 +1,23 @@
+{% extends 'base.html' %}
+
+{% block navbar %}
+{% include 'navbar.html' %}
+{% endblock %}
+
+
+{% block content %}
+<div class="container mb-3">
+    <div class="row valign-wrapper">
+        <div class="col s8">
+            <h3>{{ post.title|title }}</h3>
+        </div>
+        <div class="col s4">
+            <img class="materialboxed z-depth-2" width="350" src="{{ post.image.url }}">
+        </div>
+    </div>
+    <div>
+        {{ post.content|safe }}
+    </div>
+</div>
+{% endblock %}
+
