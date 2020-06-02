@@ -36,7 +36,9 @@ INSTALLED_APPS = [
     'django.contrib.messages',
     'django.contrib.staticfiles',
     "blog",
-    "tinymce"
+    "tinymce",
+    'grappelli',
+    'filebrowser',
 ]
 
 MIDDLEWARE = [
@@ -129,13 +131,36 @@ X_FRAME_OPTIONS = 'SAMEORIGIN'
 TINYMCE_JS_URL = os.path.join(MEDIA_URL, "js/tinymce/tinymce.min.js")
 TINYMCE_JS_ROOT = os.path.join(MEDIA_ROOT, "js/tinymce")
 
-
 TINYMCE_DEFAULT_CONFIG = {
-    'plugins': "table,spellchecker,paste,searchreplace,hr,"
-               "fullscreen,image imagetools,preview,visualblocks,"
+    'plugins': "table,paste,searchreplace,hr,paste,powerpaste,"
+               "fullscreen,image imagetools,preview,visualblocks,image,"
                "advlist,table advtable,charmap,lists checklist,emoticons,pageembed",
     'theme': "silver",
     'cleanup_on_startup': True,
     'custom_undo_redo_levels': 10,
+    'toolbar1':
+        '''
+                fullscreen preview bold italic underline | fontselect,
+                fontsizeselect  | forecolor backcolor | alignleft alignright |
+                aligncenter alignjustify | indent outdent | bullist numlist table |
+                | link image media | codesample |
+                ''',
+    'toolbar2':
+        '''
+                visualblocks visualchars |
+                charmap hr pagebreak nonbreaking anchor |  code |
+                ''',
+    'contextmenu':
+        'formats | link image',
+    'menubar':
+        True,
+    'statusbar':
+        True,
 }
 TINYMCE_SPELLCHECKER = True
+
+
+FILEBROWSER_DIRECTORY = ""
+
+BUENO_ROOT = os.path.join(BASE_DIR, "templates/bueno/")
+BUENO_URL = "/bueno/"

@@ -9,6 +9,7 @@ STATUS = (
 
 class Category(Model):
     name = CharField(max_length=60)
+    image = ImageField(upload_to="category-img/", default="category-img/logo_carre_VF.png")
 
     def __str__(self):
         return self.name
