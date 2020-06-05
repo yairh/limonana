@@ -1,6 +1,6 @@
 from django.contrib import admin
 from django.urls import reverse
-from .models import Post, Comment, Category, Tag
+from .models import Post, Comment, Category, Tag,Profile
 from django.db.models import TextField
 from tinymce.widgets import AdminTinyMCE
 
@@ -36,3 +36,4 @@ class CommentAdmin(admin.ModelAdmin):
 
 admin.site.register(Category)
 admin.site.register(Tag)
+admin.site.register(Profile)

@@ -7,6 +7,15 @@ STATUS = (
 )
 
 
+class Profile(Model):
+    user = OneToOneField(User,on_delete=CASCADE)
+    avatar = ImageField(upload_to="avatars/", default="avatars/Logo-carre-transparent.png")
+    bio = TextField(default="")
+
+    def __str__(self):
+        return self.user.username
+
+
 class Category(Model):
     name = CharField(max_length=60)
     image = ImageField(upload_to="category-img/", default="category-img/logo_carre_VF.png")
