@@ -9,7 +9,8 @@ class CommentForm(ModelForm):
         fields = ("name", "email", "body")
 
         widgets = {"body": Textarea(attrs={"class": "form-control"}),
-                   "email": EmailInput(attrs={"class": "form-control"})}
+                   "email": EmailInput(attrs={"class": "form-control"}),
+                   "name": TextInput(attrs={"class": "form-control"})}
 
 
 commentform_factory = formset_factory(CommentForm)

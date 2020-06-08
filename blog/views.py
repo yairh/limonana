@@ -27,12 +27,6 @@ class PostView(DetailView, FormView):
     def get_object(self, queryset=None):
         return Post.objects.get(slug=self.kwargs["slug"])
 
-    # def get_context_data(self, **kwargs):
-    #     post = self.get_object()
-    #     context = super().get_context_data(**kwargs)
-    #     context["forms"] = {comment.id: CommentForm(prefix=comment.id) for comment in post.comments.all()}
-    #     return context
-
     def post(self, request, *args, **kwargs):
         self.object = self.get_object()
         print(self.request.POST)
