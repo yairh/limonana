@@ -39,6 +39,7 @@ class Post(Model):
     author = ForeignKey(User, on_delete=CASCADE, related_name='posts')
     updated_on = DateTimeField(auto_now=True)
     content = TextField()
+    intro = TextField(null=True)
     created_on = DateTimeField(auto_now_add=True)
     status = IntegerField(choices=STATUS, default=0)
     image = ImageField(upload_to="title-img/", null=True)

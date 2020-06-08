@@ -7,7 +7,7 @@ from blog.forms import CommentForm, commentform_factory
 
 # Create your views here.
 def index(request):
-    posts = Post.objects.all()
+    posts = Post.objects.filter(status=1).all()
     categories = Category.objects.all()
     return render(request, "bueno/index.html", {"posts": posts, "categories": categories})
 

@@ -1,8 +1,16 @@
 from django.contrib import admin
-from django.urls import reverse
-from .models import Post, Comment, Category, Tag,Profile
+from .models import Post, Comment, Category, Tag, Profile
 from django.db.models import TextField
 from tinymce.widgets import AdminTinyMCE
+from django.forms import *
+from django.contrib.admin.widgets import AdminTextareaWidget
+
+
+class PostAdminForm(ModelForm):
+    class Meta:
+        model = Post
+        fields = "__all__"
+        widgets = {"intro": AdminTextareaWidget(), "content": AdminTinyMCE()}
 
 
 class PostAdmin(admin.ModelAdmin):
@@ -10,9 +18,7 @@ class PostAdmin(admin.ModelAdmin):
     list_filter = ("status",)
     search_fields = ['title', 'content']
     prepopulated_fields = {'slug': ('title',)}
-    formfield_overrides = {
-        TextField: {'widget': AdminTinyMCE()},
-    }
+    form = PostAdminForm
 
 
 #
