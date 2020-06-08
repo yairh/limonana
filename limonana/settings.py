@@ -159,7 +159,6 @@ TINYMCE_DEFAULT_CONFIG = {
 }
 TINYMCE_SPELLCHECKER = True
 
-
 FILEBROWSER_DIRECTORY = ""
 
 BUENO_ROOT = os.path.join(BASE_DIR, "templates/bueno/")

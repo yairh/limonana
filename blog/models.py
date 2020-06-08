@@ -8,7 +8,7 @@ STATUS = (
 
 
 class Profile(Model):
-    user = OneToOneField(User,on_delete=CASCADE)
+    user = OneToOneField(User, on_delete=CASCADE)
     avatar = ImageField(upload_to="avatars/", default="avatars/Logo-carre-transparent.png")
     bio = TextField(default="")
 
@@ -50,6 +50,13 @@ class Post(Model):
         return self.title
 
 
+class CommentManager(Manager):
+    def all(self):
+        """Return results of instance with no parent (not a reply)."""
+        qs = super().filter(parent=None)
+        return qs
+
+
 class Comment(Model):
     post = ForeignKey(Post, on_delete=CASCADE, related_name='comments')
     name = CharField(max_length=80)
@@ -57,9 +64,16 @@ class Comment(Model):
     body = TextField()
     created_on = DateTimeField(auto_now_add=True)
     active = BooleanField(default=False)
+    parent = ForeignKey("self", on_delete=CASCADE, null=True, blank=True)
+
+    objects = CommentManager()
 
     class Meta:
         ordering = ['created_on']
 
     def __str__(self):
         return 'Comment {} by {}'.format(self.body, self.name)
+
+    def children(self):
+        """Return replies of a comment."""
+        return Comment.objects.filter(parent=self)
