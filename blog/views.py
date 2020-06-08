@@ -9,7 +9,7 @@ from blog.forms import CommentForm, commentform_factory
 def index(request):
     posts = Post.objects.filter(status=1).all()
     categories = Category.objects.all()
-    return render(request, "bueno/index.html", {"posts": posts, "categories": categories})
+    return render(request, "index.html", {"posts": posts, "categories": categories})
 
 
 class IndexView(ListView):
@@ -20,7 +20,7 @@ class IndexView(ListView):
 
 class PostView(DetailView, FormView):
     model = Post
-    template_name = "bueno/single-post.html"
+    template_name = "single-post.html"
     context_object_name = "post"
     form_class = CommentForm
 
