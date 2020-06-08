@@ -90,7 +90,7 @@
                             <div class="comment-content d-flex">
                                 <!-- Comment Author -->
                                 <div class="comment-author">
-                                    <img src="{% static 'logo.ico' %}" alt="author">
+                                    <a data-toggle="collapse" data-target="#children_{{ comment.id }}"><img src="{% static 'logo.ico' %}" alt="author"></a>
                                 </div>
                                 <!-- Comment Meta -->
                                 <div class="comment-meta">
@@ -100,29 +100,33 @@
                                         {% include 'comment_modal.html' %}
                                     </div>
                                     <p>{{ comment.body }}</p>
+                                    <a data-toggle="collapse" data-target="#children_{{ comment.id }}"><p>{{ comment.children_count }} replies</p></a>
                                 </div>
                             </div>
-                            {% for child in comment.children %}
-                            <ol class="children">
-                                <li class="single_comment_area">
-                                    <!-- Comment Content -->
-                                    <div class="comment-content d-flex">
-                                        <!-- Comment Author -->
-                                        <div class="comment-author">
-                                            <img src="{% static 'logo.ico' %}" alt="author">
-                                        </div>
-                                        <!-- Comment Meta -->
-                                        <div class="comment-meta">
-                                            <div class="d-flex">
-                                                <a href="#" class="post-author">{{ child.name }}</a>
-                                                <a href="#" class="post-date">{{ child.created_on|date }}</a>
+
+                            <div class="collapse" id="children_{{ comment.id }}">
+                                {% for child in comment.children %}
+                                <ol class="children">
+                                    <li class="single_comment_area">
+                                        <!-- Comment Content -->
+                                        <div class="comment-content d-flex">
+                                            <!-- Comment Author -->
+                                            <div class="comment-author">
+                                                <img src="{% static 'logo.ico' %}" alt="author">
                                             </div>
-                                            <p>{{ child.body }}</p>
+                                            <!-- Comment Meta -->
+                                            <div class="comment-meta">
+                                                <div class="d-flex">
+                                                    <a href="#" class="post-author">{{ child.name }}</a>
+                                                    <a href="#" class="post-date">{{ child.created_on|date }}</a>
+                                                </div>
+                                                <p>{{ child.body }}</p>
+                                            </div>
                                         </div>
-                                    </div>
-                                </li>
-                            </ol>
-                            {% endfor %}
+                                    </li>
+                                </ol>
+                                {% endfor %}
+                            </div>
                         </li>
                         {% endfor %}
                     </ol>

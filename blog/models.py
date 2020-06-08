@@ -77,3 +77,6 @@ class Comment(Model):
     def children(self):
         """Return replies of a comment."""
         return Comment.objects.filter(parent=self)
+
+    def children_count(self):
+        return self.children().count()
