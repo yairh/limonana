@@ -1,14 +1,11 @@
-<a class="reply" data-toggle="modal" data-target="#exampleModal">
-    Reply
-</a>
-
 <!-- Modal -->
-<div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel"
+{% load filters %}
+<div class="modal fade" id="modal_{{ comment.id }}" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel"
      aria-hidden="true">
     <div class="modal-dialog" role="document">
         <div class="modal-content">
             <div class="modal-header">
-                <h5 class="modal-title" id="exampleModalLabel">Comment about {{ comment.title }}</h5>
+                <h5 class="modal-title" id="exampleModalLabel">Leave a reply</h5>
                 <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                     <span aria-hidden="true">&times;</span>
                 </button>
@@ -19,8 +16,9 @@
                     {{ form.as_p }}
                 </div>
                 <div class="modal-footer">
-                    <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
-                    <button type="submit" class="btn btn-primary" name="id" value="{{ film.id }}">Submit</button>
+                    <button type="submit" class="btn bueno-btn mt-30" name="comment_id" value="{{ comment.id }}">
+                        Submit
+                    </button>
                 </div>
             </form>
         </div>

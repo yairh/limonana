@@ -60,8 +60,8 @@ class CommentManager(Manager):
 class Comment(Model):
     post = ForeignKey(Post, on_delete=CASCADE, related_name='comments')
     name = CharField(max_length=80)
-    email = EmailField()
-    body = TextField()
+    email = EmailField(default="somemail@limonana.com")
+    body = TextField(verbose_name="Text")
     created_on = DateTimeField(auto_now_add=True)
     active = BooleanField(default=False)
     parent = ForeignKey("self", on_delete=CASCADE, null=True, blank=True)

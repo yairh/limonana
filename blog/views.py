@@ -1,7 +1,8 @@
-from django.shortcuts import render
-from django.views.generic import ListView, DetailView,FormView
-from blog.models import Post, Category
-from blog.forms import CommentForm
+from django.shortcuts import render, resolve_url
+from django.views.generic import ListView, DetailView, FormView
+from blog.models import Post, Category, Comment
+from django.forms import formset_factory
+from blog.forms import CommentForm, commentform_factory
 
 
 # Create your views here.
@@ -25,3 +26,35 @@ class PostView(DetailView, FormView):
 
     def get_object(self, queryset=None):
         return Post.objects.get(slug=self.kwargs["slug"])
+
+    # def get_context_data(self, **kwargs):
+    #     post = self.get_object()
+    #     context = super().get_context_data(**kwargs)
+    #     context["forms"] = {comment.id: CommentForm(prefix=comment.id) for comment in post.comments.all()}
+    #     return context
+
+    def post(self, request, *args, **kwargs):
+        self.object = self.get_object()
+        print(self.request.POST)
+        return super().post(request, *args, **kwargs)
+
+    def form_invalid(self, form):
+        print(form.errors)
+        return super().form_invalid(form)
+
+    def form_valid(self, form):
+        if "main" in self.request.POST:
+            print("got here")
+            form = CommentForm(self.request.POST)
+            parent = None
+        else:
+            parent = Comment.objects.get(pk=int(self.request.POST["comment_id"]))
+
+        comment = form.save(commit=False)
+        comment.post = self.object
+        comment.parent = parent
+        comment.save()
+        return super().form_valid(form)
+
+    def get_success_url(self):
+        return resolve_url("bpost", slug=self.get_object().slug)

@@ -90,17 +90,24 @@
                             <div class="comment-content d-flex">
                                 <!-- Comment Author -->
                                 <div class="comment-author">
-                                    <a data-toggle="collapse" data-target="#children_{{ comment.id }}"><img src="{% static 'logo.ico' %}" alt="author"></a>
+                                    <a data-toggle="collapse" data-target="#children_{{ comment.id }}"><img
+                                            src="{% static 'logo.ico' %}" alt="author"></a>
                                 </div>
                                 <!-- Comment Meta -->
                                 <div class="comment-meta">
                                     <div class="d-flex">
                                         <a href="#" class="post-author">{{ comment.name }}</a>
                                         <a href="#" class="post-date">{{ comment.created_on|date }}</a>
-                                        {% include 'comment_modal.html' %}
+                                        <a class="reply" data-toggle="modal" data-target="#modal_{{ comment.id }}">
+                                            Reply
+                                        </a>
                                     </div>
                                     <p>{{ comment.body }}</p>
-                                    <a data-toggle="collapse" data-target="#children_{{ comment.id }}"><p>{{ comment.children_count }} replies</p></a>
+                                    {% if comment.children_count >= 1 %}
+                                    <a data-toggle="collapse" data-target="#children_{{ comment.id }}">
+                                        <p>{{ comment.children_count }} replies</p>
+                                    </a>
+                                    {% endif %}
                                 </div>
                             </div>
 
@@ -120,7 +127,7 @@
                                                     <a href="#" class="post-author">{{ child.name }}</a>
                                                     <a href="#" class="post-date">{{ child.created_on|date }}</a>
                                                 </div>
-                                                <p>{{ child.body }}</p>
+                                                <p>{{ child.body|safe }}</p>
                                             </div>
                                         </div>
                                     </li>
@@ -137,26 +144,32 @@
 
                     <!-- Reply Form -->
                     <div class="contact-form-area">
-                        <form action="#" method="post">
+                        <form method="post">
+                            {% csrf_token %}
                             <div class="row">
                                 <div class="col-12 col-lg-6">
-                                    <input type="text" class="form-control" id="name" placeholder="Name*">
+                                    <input type="text" class="form-control" name="name" id="name" placeholder="Name*">
                                 </div>
                                 <div class="col-12 col-lg-6">
-                                    <input type="email" class="form-control" id="email" placeholder="Email*">
+                                    <input type="email" class="form-control" name="email" id="email" placeholder="Email*">
                                 </div>
                                 <div class="col-12">
-                                    <textarea name="message" class="form-control" id="message" cols="30" rows="10"
+                                    <textarea name="body" class="form-control" id="message" cols="30" rows="10"
                                               placeholder="Message"></textarea>
                                 </div>
                                 <div class="col-12">
-                                    <button class="btn bueno-btn mt-30" type="submit">Submit Comment</button>
+                                    <button class="btn bueno-btn mt-30" type="submit" name="main" value="">Submit Comment</button>
                                 </div>
                             </div>
                         </form>
                     </div>
                 </div>
             </div>
+
+            <!-- Comment Modals -->
+            {% for comment in post.comments.all %}
+            {% include 'comment_modal.html' %}
+            {% endfor %}
 
             <!-- Sidebar Widget -->
             <div class="col-12 col-sm-9 col-md-6 col-lg-4 col-xl-3">
