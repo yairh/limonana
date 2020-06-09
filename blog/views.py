@@ -11,6 +11,9 @@ def index(request):
     categories = Category.objects.all()
     return render(request, "index.html", {"posts": posts, "categories": categories})
 
+def contact(request):
+    return render(request, "contact.html")
+
 
 class IndexView(ListView):
     model = Post

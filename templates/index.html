@@ -199,24 +199,24 @@
             <!-- Post Area -->
             <div class="col-12 col-lg-8 col-xl-9">
                 <!-- Single Blog Post -->
+                {% for post in posts|slice:"2:" %}
                 <div class="single-blog-post style-1 d-flex flex-wrap mb-30">
                     <!-- Blog Thumbnail -->
                     <div class="blog-thumbnail">
-                        <img src="{% static 'img/bg-img/11.jpg' %}" alt="">
+                        <img src="{{ post.image.url }}" alt="">
                     </div>
                     <!-- Blog Content -->
                     <div class="blog-content">
                         <a href="#" class="post-tag">The Best</a>
-                        <a href="#" class="post-title">Birthday cake with chocolate</a>
+                        <a href="{% url 'post' post.slug %}" class="post-title">{{ post.title }}</a>
                         <div class="post-meta">
-                            <a href="#" class="post-date">July 11, 2018</a>
-                            <a href="#" class="post-author">By Julia Stiles</a>
+                            <a href="#" class="post-date">{{ post.created_on|date }}</a>
+                            <a href="#" class="post-author">By {{ post.author }}</a>
                         </div>
-                        <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nunc tristique justo id elit
-                            bibendum pharetra non vitae lectus. Mauris libero felis, dapibus a ultrices sed, commodo
-                            vitae odio. Sed auctor tellus quis arcu tempus.</p>
+                        <p>{{ post.intro|slice:":250"}}..</p>
                     </div>
                 </div>
+                {% endfor %}
             </div>
 
             <!-- Sidebar Area -->
