@@ -1,8 +1,7 @@
 from django.shortcuts import render, resolve_url
 from django.views.generic import ListView, DetailView, FormView
 from blog.models import Post, Category, Comment
-from django.forms import formset_factory
-from blog.forms import CommentForm, commentform_factory
+from blog.forms import CommentForm
 
 
 # Create your views here.
@@ -10,6 +9,7 @@ def index(request):
     posts = Post.objects.filter(status=1).all()
     categories = Category.objects.all()
     return render(request, "index.html", {"posts": posts, "categories": categories})
+
 
 def contact(request):
     return render(request, "contact.html")
@@ -41,7 +41,6 @@ class PostView(DetailView, FormView):
 
     def form_valid(self, form):
         if "main" in self.request.POST:
-            print("got here")
             form = CommentForm(self.request.POST)
             parent = None
         else:
@@ -54,4 +53,4 @@ class PostView(DetailView, FormView):
         return super().form_valid(form)
 
     def get_success_url(self):
-        return resolve_url("bpost", slug=self.get_object().slug)
+        return resolve_url("post", slug=self.get_object().slug)

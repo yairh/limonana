@@ -112,7 +112,6 @@
 <!--                    </div>-->
 <!--                </div>-->
 <!--            </div>-->
-        </div>
     </div>
 </div>
 <!-- ##### Hero Area End ##### -->
@@ -150,7 +149,7 @@
         <div class="row align-items-center">
             <div class="col-12 col-md-6">
                 <div class="big-post-thumbnail mb-50">
-                    <img src="{{ post.image.url }}" alt="">
+                    <img src="{{ post.image.squared_image.url }}" alt="">
                 </div>
             </div>
             <div class="col-12 col-md-6">
@@ -203,7 +202,7 @@
                 <div class="single-blog-post style-1 d-flex flex-wrap mb-30">
                     <!-- Blog Thumbnail -->
                     <div class="blog-thumbnail">
-                        <img src="{{ post.image.url }}" alt="">
+                        <img src="{{ post.image.squared_image.url }}" alt="">
                     </div>
                     <!-- Blog Content -->
                     <div class="blog-content">
@@ -223,93 +222,96 @@
             <div class="col-12 col-sm-9 col-md-6 col-lg-4 col-xl-3">
                 <div class="sidebar-area">
 
-                    <!-- Single Widget Area -->
-                    <div class="single-widget-area add-widget mb-30">
-                        <img src="{% static 'img/bg-img/add.png' %}" alt="">
-                    </div>
+<!--                    &lt;!&ndash; Single Widget Area &ndash;&gt;-->
+<!--                    <div class="single-widget-area add-widget mb-30">-->
+<!--                        <img src="{% static 'img/bg-img/add.png' %}" alt="">-->
+<!--                    </div>-->
 
                     <!-- Single Widget Area -->
                     <div class="single-widget-area post-widget">
 
                         <!-- Single Post Area -->
+                        {% for post in posts|slice:":4" %}
                         <div class="single-post-area d-flex">
                             <!-- Blog Thumbnail -->
                             <div class="blog-thumbnail">
-                                <img src="{% static 'img/bg-img/12.jpg' %}" alt="">
+                                <a href="{% url 'post' post.slug %}"><img src="{{ post.image.thumbnail.url }}" alt=""></a>
                             </div>
                             <!-- Blog Content -->
                             <div class="blog-content">
-                                <a href="#" class="post-title">Friend eggs with ham</a>
+                                <a href="{% url 'post' post.slug %}" class="post-title">{{ post.title|title }}</a>
                                 <div class="post-meta">
-                                    <a href="#" class="post-date">July 11, 2018</a>
-                                    <a href="#" class="post-author">By Julia Stiles</a>
+                                    <a href="#" class="post-date">{{ post.created_on|date }}</a>
+                                    <a href="#" class="post-author">By {{ post.author }}</a>
                                 </div>
                             </div>
                         </div>
+                        {% endfor %}
 
-                        <!-- Single Post Area -->
-                        <div class="single-post-area d-flex mb-30">
-                            <!-- Blog Thumbnail -->
-                            <div class="blog-thumbnail">
-                                <img src="{% static 'img/bg-img/13.jpg' %}" alt="">
-                            </div>
-                            <!-- Blog Content -->
-                            <div class="blog-content">
-                                <a href="#" class="post-title">Burger with fries</a>
-                                <div class="post-meta">
-                                    <a href="#" class="post-date">July 11, 2018</a>
-                                    <a href="#" class="post-author">By Julia Stiles</a>
-                                </div>
-                            </div>
-                        </div>
 
-                        <!-- Single Post Area -->
-                        <div class="single-post-area d-flex">
-                            <!-- Blog Thumbnail -->
-                            <div class="blog-thumbnail">
-                                <img src="{% static 'img/bg-img/14.jpg' %}" alt="">
-                            </div>
-                            <!-- Blog Content -->
-                            <div class="blog-content">
-                                <a href="#" class="post-title">Avocado &amp; Oisters</a>
-                                <div class="post-meta">
-                                    <a href="#" class="post-date">July 11, 2018</a>
-                                    <a href="#" class="post-author">By Julia Stiles</a>
-                                </div>
-                            </div>
-                        </div>
+<!--                        &lt;!&ndash; Single Post Area &ndash;&gt;-->
+<!--                        <div class="single-post-area d-flex mb-30">-->
+<!--                            &lt;!&ndash; Blog Thumbnail &ndash;&gt;-->
+<!--                            <div class="blog-thumbnail">-->
+<!--                                <img src="{% static 'img/bg-img/13.jpg' %}" alt="">-->
+<!--                            </div>-->
+<!--                            &lt;!&ndash; Blog Content &ndash;&gt;-->
+<!--                            <div class="blog-content">-->
+<!--                                <a href="#" class="post-title">Burger with fries</a>-->
+<!--                                <div class="post-meta">-->
+<!--                                    <a href="#" class="post-date">July 11, 2018</a>-->
+<!--                                    <a href="#" class="post-author">By Julia Stiles</a>-->
+<!--                                </div>-->
+<!--                            </div>-->
+<!--                        </div>-->
 
-                        <!-- Single Post Area -->
-                        <div class="single-post-area d-flex">
-                            <!-- Blog Thumbnail -->
-                            <div class="blog-thumbnail">
-                                <img src="{% static 'img/bg-img/15.jpg' %}" alt="">
-                            </div>
-                            <!-- Blog Content -->
-                            <div class="blog-content">
-                                <a href="#" class="post-title">Tortilla prawns</a>
-                                <div class="post-meta">
-                                    <a href="#" class="post-date">July 11, 2018</a>
-                                    <a href="#" class="post-author">By Julia Stiles</a>
-                                </div>
-                            </div>
-                        </div>
+<!--                        &lt;!&ndash; Single Post Area &ndash;&gt;-->
+<!--                        <div class="single-post-area d-flex">-->
+<!--                            &lt;!&ndash; Blog Thumbnail &ndash;&gt;-->
+<!--                            <div class="blog-thumbnail">-->
+<!--                                <img src="{% static 'img/bg-img/14.jpg' %}" alt="">-->
+<!--                            </div>-->
+<!--                            &lt;!&ndash; Blog Content &ndash;&gt;-->
+<!--                            <div class="blog-content">-->
+<!--                                <a href="#" class="post-title">Avocado &amp; Oisters</a>-->
+<!--                                <div class="post-meta">-->
+<!--                                    <a href="#" class="post-date">July 11, 2018</a>-->
+<!--                                    <a href="#" class="post-author">By Julia Stiles</a>-->
+<!--                                </div>-->
+<!--                            </div>-->
+<!--                        </div>-->
 
-                        <!-- Single Post Area -->
-                        <div class="single-post-area d-flex">
-                            <!-- Blog Thumbnail -->
-                            <div class="blog-thumbnail">
-                                <img src="{% static 'img/bg-img/16.jpg' %}" alt="">
-                            </div>
-                            <!-- Blog Content -->
-                            <div class="blog-content">
-                                <a href="#" class="post-title">Burger with fries</a>
-                                <div class="post-meta">
-                                    <a href="#" class="post-date">July 11, 2018</a>
-                                    <a href="#" class="post-author">By Julia Stiles</a>
-                                </div>
-                            </div>
-                        </div>
+<!--                        &lt;!&ndash; Single Post Area &ndash;&gt;-->
+<!--                        <div class="single-post-area d-flex">-->
+<!--                            &lt;!&ndash; Blog Thumbnail &ndash;&gt;-->
+<!--                            <div class="blog-thumbnail">-->
+<!--                                <img src="{% static 'img/bg-img/15.jpg' %}" alt="">-->
+<!--                            </div>-->
+<!--                            &lt;!&ndash; Blog Content &ndash;&gt;-->
+<!--                            <div class="blog-content">-->
+<!--                                <a href="#" class="post-title">Tortilla prawns</a>-->
+<!--                                <div class="post-meta">-->
+<!--                                    <a href="#" class="post-date">July 11, 2018</a>-->
+<!--                                    <a href="#" class="post-author">By Julia Stiles</a>-->
+<!--                                </div>-->
+<!--                            </div>-->
+<!--                        </div>-->
+
+<!--                        &lt;!&ndash; Single Post Area &ndash;&gt;-->
+<!--                        <div class="single-post-area d-flex">-->
+<!--                            &lt;!&ndash; Blog Thumbnail &ndash;&gt;-->
+<!--                            <div class="blog-thumbnail">-->
+<!--                                <img src="{% static 'img/bg-img/16.jpg' %}" alt="">-->
+<!--                            </div>-->
+<!--                            &lt;!&ndash; Blog Content &ndash;&gt;-->
+<!--                            <div class="blog-content">-->
+<!--                                <a href="#" class="post-title">Burger with fries</a>-->
+<!--                                <div class="post-meta">-->
+<!--                                    <a href="#" class="post-date">July 11, 2018</a>-->
+<!--                                    <a href="#" class="post-author">By Julia Stiles</a>-->
+<!--                                </div>-->
+<!--                            </div>-->
+<!--                        </div>-->
 
                     </div>
                 </div>

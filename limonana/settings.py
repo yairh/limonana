@@ -40,6 +40,7 @@ INSTALLED_APPS = [
     "tinymce",
     'grappelli',
     'filebrowser',
+    "stdimage",
 ]
 
 MIDDLEWARE = [

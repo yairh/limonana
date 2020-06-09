@@ -1,5 +1,6 @@
 from django.db.models import *
 from django.contrib.auth.models import User
+from stdimage import StdImageField, JPEGField
 
 STATUS = (
     (0, "Draft"),
@@ -42,7 +43,9 @@ class Post(Model):
     intro = TextField(null=True)
     created_on = DateTimeField(auto_now_add=True)
     status = IntegerField(choices=STATUS, default=0)
-    image = ImageField(upload_to="title-img/", null=True)
+    image = StdImageField(upload_to="title-img/", null=True,
+                          variations={"squared_image": {'width': 500, 'height': 500},
+                                      'thumbnail': {'width': 100, 'height': 75}})
 
     class Meta:
         ordering = ['-created_on']
