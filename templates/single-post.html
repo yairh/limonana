@@ -1,62 +1,6 @@
 {% extends 'base.html' %}
 {% load static %}
 {% block main %}
-<!-- ##### Search Area Start ##### -->
-<!--<div class="bueno-search-area section-padding-100-0 pb-70 bg-img"-->
-<!--     style="background-image: url(img/core-img/pattern.png);">-->
-<!--    <div class="container">-->
-<!--        <div class="row">-->
-<!--            <div class="col-12">-->
-<!--                <form action="#" method="post">-->
-<!--                    <div class="row">-->
-<!--                        <div class="col-12 col-sm-6 col-lg-3">-->
-<!--                            <div class="form-group mb-30">-->
-<!--                                <select class="form-control" id="recipe">-->
-<!--                                    <option value="">Recipe</option>-->
-<!--                                    <option value="">Recipe 1</option>-->
-<!--                                    <option value="">Recipe 2</option>-->
-<!--                                    <option value="">Recipe 3</option>-->
-<!--                                    <option value="">Recipe 4</option>-->
-<!--                                </select>-->
-<!--                            </div>-->
-<!--                        </div>-->
-
-<!--                        <div class="col-12 col-sm-6 col-lg-3">-->
-<!--                            <div class="form-group mb-30">-->
-<!--                                <select class="form-control" id="vegan">-->
-<!--                                    <option value="">Vegan</option>-->
-<!--                                    <option value="">Vegan 1</option>-->
-<!--                                    <option value="">Vegan 2</option>-->
-<!--                                    <option value="">Vegan 3</option>-->
-<!--                                    <option value="">Vegan 4</option>-->
-<!--                                </select>-->
-<!--                            </div>-->
-<!--                        </div>-->
-
-<!--                        <div class="col-12 col-sm-6 col-lg-3">-->
-<!--                            <div class="form-group mb-30">-->
-<!--                                <select class="form-control" id="ingredients">-->
-<!--                                    <option value="">Ingredients</option>-->
-<!--                                    <option value="">Ingredients 1</option>-->
-<!--                                    <option value="">Ingredients 2</option>-->
-<!--                                    <option value="">Ingredients 3</option>-->
-<!--                                    <option value="">Ingredients 4</option>-->
-<!--                                </select>-->
-<!--                            </div>-->
-<!--                        </div>-->
-<!--                        <div class="col-12 col-sm-6 col-lg-3">-->
-<!--                            <div class="form-group mb-30">-->
-<!--                                <button class="btn bueno-btn w-100">Search</button>-->
-<!--                            </div>-->
-<!--                        </div>-->
-<!--                    </div>-->
-<!--                </form>-->
-<!--            </div>-->
-<!--        </div>-->
-<!--    </div>-->
-<!--</div>-->
-<!-- ##### Search Area End ##### -->
-
 <!-- ##### Post Details Area Start ##### -->
 <section class="post-news-area section-padding-100-0 mb-70">
     <div class="container">
@@ -64,15 +8,23 @@
             <!-- Post Details Content Area -->
             <div class="col-12 col-lg-8 col-xl-9">
                 <div class="post-details-content mb-100">
+
                     <div class="blog-thumbnail mb-50">
-                        <img src="{{ post.image.url }}" alt="">
+
+                        <img src="{{ post.image.squared_image.url }}" alt="">
                     </div>
+
                     <div class="blog-content">
-                        <a href="#" class="post-tag">Healthy Food</a>
+
+
                         <h4 class="post-title">{{ post.title|title }}</h4>
                         <div class="post-meta mb-50">
                             <a href="#" class="post-date">{{ post.created_on|date }}</a>
                             <a href="#" class="post-author">By {{ post.author }}</a>
+                            <br>
+                            {% for tag in post.tags.all %}<a href="{% url 'tag' tag.slug %}"><span class="post-tag"> #{{ tag }}
+                           </span></a>{% endfor %}
+
                         </div>
                         {{ post.content|safe }}
                     </div>
@@ -151,14 +103,17 @@
                                     <input type="text" class="form-control" name="name" id="name" placeholder="Name*">
                                 </div>
                                 <div class="col-12 col-lg-6">
-                                    <input type="email" class="form-control" name="email" id="email" placeholder="Email*">
+                                    <input type="email" class="form-control" name="email" id="email"
+                                           placeholder="Email*">
                                 </div>
                                 <div class="col-12">
                                     <textarea name="body" class="form-control" id="message" cols="30" rows="10"
                                               placeholder="Message"></textarea>
                                 </div>
                                 <div class="col-12">
-                                    <button class="btn bueno-btn mt-30" type="submit" name="main" value="">Submit Comment</button>
+                                    <button class="btn bueno-btn mt-30" type="submit" name="main" value="">Submit
+                                        Comment
+                                    </button>
                                 </div>
                             </div>
                         </form>
@@ -191,96 +146,103 @@
                         </div>
                     </div>
 
-                    <!-- Single Widget Area -->
-<!--                    <div class="single-widget-area add-widget mb-30">-->
-<!--                        <img src="img/bg-img/add.png" alt="">-->
-<!--                    </div>-->
 
                     <!-- Single Widget Area -->
-<!--                    <div class="single-widget-area post-widget mb-30">-->
-<!--                        &lt;!&ndash; Single Post Area &ndash;&gt;-->
-<!--                        <div class="single-post-area d-flex">-->
-<!--                            &lt;!&ndash; Blog Thumbnail &ndash;&gt;-->
-<!--                            <div class="blog-thumbnail">-->
-<!--                                <img src="img/bg-img/12.jpg" alt="">-->
-<!--                            </div>-->
-<!--                            &lt;!&ndash; Blog Content &ndash;&gt;-->
-<!--                            <div class="blog-content">-->
-<!--                                <a href="#" class="post-title">Friend eggs with ham</a>-->
-<!--                                <div class="post-meta">-->
-<!--                                    <a href="#" class="post-date">July 11, 2018</a>-->
-<!--                                    <a href="#" class="post-author">By Julia Stiles</a>-->
-<!--                                </div>-->
-<!--                            </div>-->
-<!--                        </div>-->
-
-<!--                        &lt;!&ndash; Single Post Area &ndash;&gt;-->
-<!--                        <div class="single-post-area d-flex">-->
-<!--                            &lt;!&ndash; Blog Thumbnail &ndash;&gt;-->
-<!--                            <div class="blog-thumbnail">-->
-<!--                                <img src="img/bg-img/13.jpg" alt="">-->
-<!--                            </div>-->
-<!--                            &lt;!&ndash; Blog Content &ndash;&gt;-->
-<!--                            <div class="blog-content">-->
-<!--                                <a href="#" class="post-title">Burger with fries</a>-->
-<!--                                <div class="post-meta">-->
-<!--                                    <a href="#" class="post-date">July 11, 2018</a>-->
-<!--                                    <a href="#" class="post-author">By Julia Stiles</a>-->
-<!--                                </div>-->
-<!--                            </div>-->
-<!--                        </div>-->
-
-<!--                        &lt;!&ndash; Single Post Area &ndash;&gt;-->
-<!--                        <div class="single-post-area d-flex">-->
-<!--                            &lt;!&ndash; Blog Thumbnail &ndash;&gt;-->
-<!--                            <div class="blog-thumbnail">-->
-<!--                                <img src="img/bg-img/14.jpg" alt="">-->
-<!--                            </div>-->
-<!--                            &lt;!&ndash; Blog Content &ndash;&gt;-->
-<!--                            <div class="blog-content">-->
-<!--                                <a href="#" class="post-title">Avocado &amp; Oisters</a>-->
-<!--                                <div class="post-meta">-->
-<!--                                    <a href="#" class="post-date">July 11, 2018</a>-->
-<!--                                    <a href="#" class="post-author">By Julia Stiles</a>-->
-<!--                                </div>-->
-<!--                            </div>-->
-<!--                        </div>-->
-
-<!--                        &lt;!&ndash; Single Post Area &ndash;&gt;-->
-<!--                        <div class="single-post-area d-flex">-->
-<!--                            &lt;!&ndash; Blog Thumbnail &ndash;&gt;-->
-<!--                            <div class="blog-thumbnail">-->
-<!--                                <img src="img/bg-img/15.jpg" alt="">-->
-<!--                            </div>-->
-<!--                            &lt;!&ndash; Blog Content &ndash;&gt;-->
-<!--                            <div class="blog-content">-->
-<!--                                <a href="#" class="post-title">Tortilla prawns</a>-->
-<!--                                <div class="post-meta">-->
-<!--                                    <a href="#" class="post-date">July 11, 2018</a>-->
-<!--                                    <a href="#" class="post-author">By Julia Stiles</a>-->
-<!--                                </div>-->
-<!--                            </div>-->
-<!--                        </div>-->
-
-<!--                        &lt;!&ndash; Single Post Area &ndash;&gt;-->
-<!--                        <div class="single-post-area d-flex">-->
-<!--                            &lt;!&ndash; Blog Thumbnail &ndash;&gt;-->
-<!--                            <div class="blog-thumbnail">-->
-<!--                                <img src="img/bg-img/16.jpg" alt="">-->
-<!--                            </div>-->
-<!--                            &lt;!&ndash; Blog Content &ndash;&gt;-->
-<!--                            <div class="blog-content">-->
-<!--                                <a href="#" class="post-title">Burger with fries</a>-->
-<!--                                <div class="post-meta">-->
-<!--                                    <a href="#" class="post-date">July 11, 2018</a>-->
-<!--                                    <a href="#" class="post-author">By Julia Stiles</a>-->
-<!--                                </div>-->
-<!--                            </div>-->
-<!--                        </div>-->
-<!--                    </div>-->
+                    <!--                    <div class="single-widget-area add-widget mb-30">-->
+                    <!--                        <img src="img/bg-img/add.png" alt="">-->
+                    <!--                    </div>-->
 
                     <!-- Single Widget Area -->
-                    {% include 'subscribe.html' %}
+                    <div class="single-widget-area post-widget mb-30">
+                        <p> More in {{ post.category }}</p>
+                        <!-- Single Post Area -->
+                        {% for cpost in post.category.post_set.all|slice:":4" %}
+                        {% if cpost.id != post.id %}
+                        <div class="single-post-area d-flex">
+                            <!-- Blog Thumbnail -->
+                            <div class="blog-thumbnail">
+                                <a href="{% url 'post' cpost.slug %}"><img src="{{ cpost.image.thumbnail.url }}" alt=""></a>
+                            </div>
+                            <!-- Blog Content -->
+                            <div class="blog-content">
+                                <a href="{% url 'post' cpost.slug %}" class="post-title">{{ cpost.title|title }}</a>
+                                <div class="post-meta">
+                                    <a href="#" class="post-date">{{ cpost.created_on|date }}</a>
+                                    <a href="#" class="post-author">By {{ cpost.author }}</a>
+                                </div>
+                            </div>
+                        </div>
+                        {% endif %}
+                        {% endfor %}
+
+                        <!--                        &lt;!&ndash; Single Post Area &ndash;&gt;-->
+                        <!--                        <div class="single-post-area d-flex">-->
+                        <!--                            &lt;!&ndash; Blog Thumbnail &ndash;&gt;-->
+                        <!--                            <div class="blog-thumbnail">-->
+                        <!--                                <img src="img/bg-img/13.jpg" alt="">-->
+                        <!--                            </div>-->
+                        <!--                            &lt;!&ndash; Blog Content &ndash;&gt;-->
+                        <!--                            <div class="blog-content">-->
+                        <!--                                <a href="#" class="post-title">Burger with fries</a>-->
+                        <!--                                <div class="post-meta">-->
+                        <!--                                    <a href="#" class="post-date">July 11, 2018</a>-->
+                        <!--                                    <a href="#" class="post-author">By Julia Stiles</a>-->
+                        <!--                                </div>-->
+                        <!--                            </div>-->
+                        <!--                        </div>-->
+
+                        <!--                        &lt;!&ndash; Single Post Area &ndash;&gt;-->
+                        <!--                        <div class="single-post-area d-flex">-->
+                        <!--                            &lt;!&ndash; Blog Thumbnail &ndash;&gt;-->
+                        <!--                            <div class="blog-thumbnail">-->
+                        <!--                                <img src="img/bg-img/14.jpg" alt="">-->
+                        <!--                            </div>-->
+                        <!--                            &lt;!&ndash; Blog Content &ndash;&gt;-->
+                        <!--                            <div class="blog-content">-->
+                        <!--                                <a href="#" class="post-title">Avocado &amp; Oisters</a>-->
+                        <!--                                <div class="post-meta">-->
+                        <!--                                    <a href="#" class="post-date">July 11, 2018</a>-->
+                        <!--                                    <a href="#" class="post-author">By Julia Stiles</a>-->
+                        <!--                                </div>-->
+                        <!--                            </div>-->
+                        <!--                        </div>-->
+
+                        <!--                        &lt;!&ndash; Single Post Area &ndash;&gt;-->
+                        <!--                        <div class="single-post-area d-flex">-->
+                        <!--                            &lt;!&ndash; Blog Thumbnail &ndash;&gt;-->
+                        <!--                            <div class="blog-thumbnail">-->
+                        <!--                                <img src="img/bg-img/15.jpg" alt="">-->
+                        <!--                            </div>-->
+                        <!--                            &lt;!&ndash; Blog Content &ndash;&gt;-->
+                        <!--                            <div class="blog-content">-->
+                        <!--                                <a href="#" class="post-title">Tortilla prawns</a>-->
+                        <!--                                <div class="post-meta">-->
+                        <!--                                    <a href="#" class="post-date">July 11, 2018</a>-->
+                        <!--                                    <a href="#" class="post-author">By Julia Stiles</a>-->
+                        <!--                                </div>-->
+                        <!--                            </div>-->
+                        <!--                        </div>-->
+
+                        <!--                        &lt;!&ndash; Single Post Area &ndash;&gt;-->
+                        <!--                        <div class="single-post-area d-flex">-->
+                        <!--                            &lt;!&ndash; Blog Thumbnail &ndash;&gt;-->
+                        <!--                            <div class="blog-thumbnail">-->
+                        <!--                                <img src="img/bg-img/16.jpg" alt="">-->
+                        <!--                            </div>-->
+                        <!--                            &lt;!&ndash; Blog Content &ndash;&gt;-->
+                        <!--                            <div class="blog-content">-->
+                        <!--                                <a href="#" class="post-title">Burger with fries</a>-->
+                        <!--                                <div class="post-meta">-->
+                        <!--                                    <a href="#" class="post-date">July 11, 2018</a>-->
+                        <!--                                    <a href="#" class="post-author">By Julia Stiles</a>-->
+                        <!--                                </div>-->
+                        <!--                            </div>-->
+                        <!--                        </div>-->
+                        <!--                    </div>-->
+
+                        <!-- Single Widget Area -->
+                        {% include 'subscribe.html' %}
+                    </div>
                 </div>
             </div>
         </div>

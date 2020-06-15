@@ -1,6 +1,6 @@
 from django.shortcuts import render, resolve_url
 from django.views.generic import ListView, DetailView, FormView
-from blog.models import Post, Category, Comment
+from blog.models import Post, Category, Comment, Tag
 from blog.forms import CommentForm
 
 
@@ -12,7 +12,13 @@ def index(request):
 
 
 def contact(request):
-    return render(request, "contact.html")
+    categories = Category.objects.all()
+    return render(request, "contact.html", {"categories": categories})
+
+
+def categories(request):
+    categories = Category.objects.all()
+    return render(request, "category.html", {"categories": categories})
 
 
 class IndexView(ListView):
@@ -21,11 +27,44 @@ class IndexView(ListView):
     context_object_name = "posts"
 
 
+class CategoryView(DetailView):
+    model = Category
+    template_name = "category-post.html"
+    context_object_name = "category"
+
+    def get_object(self, queryset=None):
+        return Category.objects.get(slug=self.kwargs["slug"])
+
+    def get_context_data(self, **kwargs):
+        context = super().get_context_data(**kwargs)
+        context["categories"] = Category.objects.all()
+        return context
+
+
+class TagView(DetailView):
+    model = Tag
+    template_name = "tag-post.html"
+    context_object_name = "tag"
+
+    def get_object(self, queryset=None):
+        return Tag.objects.get(slug=self.kwargs["slug"])
+
+    def get_context_data(self, **kwargs):
+        context = super().get_context_data(**kwargs)
+        context["categories"] = Category.objects.all()
+        return context
+
+
 class PostView(DetailView, FormView):
     model = Post
     template_name = "single-post.html"
     context_object_name = "post"
     form_class = CommentForm
+
+    def get_context_data(self, **kwargs):
+        context = super().get_context_data(**kwargs)
+        context["categories"] = Category.objects.all()
+        return context
 
     def get_object(self, queryset=None):
         return Post.objects.get(slug=self.kwargs["slug"])

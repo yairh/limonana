@@ -1,0 +1,101 @@
+{% extends 'base.html' %}
+{% load static %}
+{% block main %}
+<div class="bueno-search-area section-padding-100-0 pb-70 bg-img"
+     style="background-image: url({% static 'img/core-img/pattern.png' %});">
+    <div class="container mb-30">
+        <!-- Content -->
+        <div class="container">
+            <div class="single-post-catagory ">
+                <div class="catagory-content-bg">
+                    <div class="catagory-content">
+                        <a href="{% url 'category' category.slug %}" class="post-title">{{ category.name }}</a>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-- ##### Catagory Post Area Start ##### -->
+<div class="catagory-post-area section-padding-100">
+    <div class="container">
+        <div class="row justify-content-center">
+            <!-- Post Area -->
+            <div class="col-12 col-lg-8 col-xl-9">
+                {% for post in category.post_set.all %}
+                <!-- Single Blog Post -->
+                <div class="single-blog-post style-1 d-flex flex-wrap mb-30">
+                    <!-- Blog Thumbnail -->
+                    <div class="blog-thumbnail">
+                        <img src="{{ post.image.squared_image.url }}" alt="">
+                    </div>
+                    <!-- Blog Content -->
+                    <div class="blog-content">
+
+                        <a href="{% url 'post' post.slug %}" class="post-title">{{ post.title }}</a>
+                        <div class="post-meta">
+                            <a href="#" class="post-date">{{ post.created_on|date }}</a>
+                            <a href="#" class="post-author">By {{ post.author }}</a>
+                           <br>
+                            {% for tag in post.tags.all %}<a href="{% url 'tag' tag.slug %}"><span class="post-tag"> #{{ tag }}
+                           </span></a>{% endfor %}
+                        </div>
+                        <p>{{ post.intro|slice:":250"}}..</p>
+                    </div>
+                </div>
+                {% endfor %}
+            </div>
+
+            <!-- Sidebar Area -->
+            <div class="col-12 col-sm-9 col-md-6 col-lg-4 col-xl-3">
+                <div class="sidebar-area">
+
+                    <!-- Single Widget Area -->
+                    <div class="single-widget-area author-widget mb-30">
+                        <div class="background-pattern bg-img"
+                             style="background-image: url({% static 'img/core-img/pattern2.png' %});">
+                            <div class="author-thumbnail">
+                                <img src="{% static 'ode_avatar.jpg' %}" alt="">
+                            </div>
+                            <p>My name is <span>Odelia</span>, I’m a passionate cook with a love for vegan food.
+                            </p>
+                        </div>
+                        <div class="social-info">
+                            <a href="https://www.pinterest.com/odelia0326/" target="_blank"><i
+                                    class="fa fa-pinterest"
+                                    aria-hidden="true"></i></a>
+                            <a href="https://www.facebook.com/limonana.blog" target="_blank"><i
+                                    class="fa fa-facebook"
+                                    aria-hidden="true"></i></a>
+                            <a href="https://www.instagram.com/limonana.blog/?hl=fr" target="_blank"><i
+                                    class="fa fa-instagram"
+                                    aria-hidden="true"></i></a>
+                        </div>
+                    </div>
+
+
+                    <!-- Single Widget Area -->
+                    {% include 'subscribe.html' %}
+                </div>
+            </div>
+        </div>
+
+        <!--        <div class="row">-->
+        <!--            <div class="col-12">-->
+        <!--                <div class="pagination-area mt-70">-->
+        <!--                    <nav aria-label="Page navigation example">-->
+        <!--                        <ul class="pagination">-->
+        <!--                            <li class="page-item"><a class="page-link" href="#">01</a></li>-->
+        <!--                            <li class="page-item active"><a class="page-link" href="#">02</a></li>-->
+        <!--                            <li class="page-item"><a class="page-link" href="#">03</a></li>-->
+        <!--                        </ul>-->
+        <!--                    </nav>-->
+        <!--                </div>-->
+        <!--            </div>-->
+        <!--        </div>-->
+    </div>
+</div>
+<!-- ##### Catagory Post Area End ##### -->
+{% endblock %}

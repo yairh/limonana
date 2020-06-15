@@ -1,0 +1,41 @@
+{% extends 'base.html' %}
+{% load static %}
+{% block main %}
+<!-- ##### Catagory Area Start ##### -->
+<div class="post-catagory section-padding-100">
+    <div class="container">
+        <div class="row">
+            <!-- Single Post Catagory -->
+            {% for category in categories %}
+            <div class="col-12 col-sm-6 col-lg-4">
+                <div class="single-post-catagory mb-30">
+                    <a href="{% url 'category' category.slug %}"><img src="{% static 'img/bg-img/4.jpg' %}" alt=""></a>
+                    <!-- Content -->
+                    <div class="catagory-content-bg">
+                        <div class="catagory-content">
+                            <!--                            <a href="#" class="post-tag">The Best</a>-->
+                            <a href="{% url 'category' category.slug %}" class="post-title">{{ category.name }}</a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            {% endfor %}
+        </div>
+
+<!--        <div class="row">-->
+<!--            <div class="col-12">-->
+<!--                <div class="pagination-area mt-70">-->
+<!--                    <nav aria-label="Page navigation example">-->
+<!--                        <ul class="pagination">-->
+<!--                            <li class="page-item"><a class="page-link" href="#">01</a></li>-->
+<!--                            <li class="page-item active"><a class="page-link" href="#">02</a></li>-->
+<!--                            <li class="page-item"><a class="page-link" href="#">03</a></li>-->
+<!--                        </ul>-->
+<!--                    </nav>-->
+<!--                </div>-->
+<!--            </div>-->
+<!--        </div>-->
+    </div>
+</div>
+<!-- ##### Catagory Area End ##### -->
+{% endblock %}

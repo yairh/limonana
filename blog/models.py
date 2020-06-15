@@ -19,6 +19,7 @@ class Profile(Model):
 
 class Category(Model):
     name = CharField(max_length=60)
+    slug = SlugField(unique=True, null=True)
     image = ImageField(upload_to="category-img/", default="category-img/logo_carre_VF.png")
 
     def __str__(self):
@@ -27,6 +28,7 @@ class Category(Model):
 
 class Tag(Model):
     name = CharField(max_length=60)
+    slug = SlugField(unique=True,null=True)
 
     def __str__(self):
         return self.name

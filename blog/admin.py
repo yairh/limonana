@@ -40,6 +40,18 @@ class CommentAdmin(admin.ModelAdmin):
         queryset.update(active=True)
 
 
-admin.site.register(Category)
-admin.site.register(Tag)
+class TagAdmin(admin.ModelAdmin):
+    list_display = ('name', "slug")
+    search_fields = ['name']
+    prepopulated_fields = {'slug': ('name',)}
+
+
+class CategoryAdmin(admin.ModelAdmin):
+    list_display = ('name', "slug", "image")
+    search_fields = ['name']
+    prepopulated_fields = {'slug': ('name',)}
+
+
+admin.site.register(Category, CategoryAdmin)
+admin.site.register(Tag, TagAdmin)
 admin.site.register(Profile)

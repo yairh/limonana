@@ -107,40 +107,25 @@
                         <!-- Nav Start -->
                         <div class="classynav">
                             <ul>
-                                <li><a href="{% url 'index' %}">Home</a></li>
-                                <li><a href="#">About</a></li>
-                                <li><a href="#">Pages</a>
+                                <li><a href="{% url 'index' %}">Acceuil</a></li>
+                                <li><a href="{% url 'category_list' %}">Recettes</a>
                                     <ul class="dropdown">
-                                        <li><a href="index.html">Home</a></li>
-                                        <li><a href="catagory.html">Category</a></li>
-                                        <li><a href="catagory-post.html">Catagory Post</a></li>
-                                        <li><a href="single-post.html">Single Post</a></li>
-                                        <li><a href="receipe.html">Recipe</a></li>
-                                        <li><a href="{% url 'contact' %}">Contact</a></li>
+                                        {% for category in categories %}
+                                            <li><a href="{% url 'category' category.slug %}">{{ category }}</a></li>
+                                            {% endfor %}
                                     </ul>
                                 </li>
-                                <li><a href="#">Recipes</a>
-                                    <div class="megamenu">
-                                        <ul class="single-mega cn-col-4">
-                                            <li><a href="#">- Recipe</a></li>
-                                            <li><a href="#">- Bread</a></li>
-                                            <li><a href="#">- Breakfast</a></li>
-                                            <li><a href="#">- Meat</a></li>
-                                            <li><a href="#">- Fastfood</a></li>
-                                            <li><a href="#">- Salad</a></li>
-                                            <li><a href="#">- Soup</a></li>
-                                        </ul>
+<!--                                <li><a href="#">Recettes</a>-->
+<!--                                    <div class="megamenu">-->
+<!--                                        <ul class="single-mega cn-col-4">-->
+<!--                                            -->
+<!--                                        </ul>-->
 
-                                    </div>
-                                </li>
-                                <li><a href="single-post.html">Blog</a></li>
+<!--                                    </div>-->
+<!--                                </li>-->
+                                <li><a href="#">A Propos</a></li>
                                 <li><a href="{% url 'contact' %}">Contact</a></li>
                             </ul>
-
-                            <!-- Login/Register -->
-                            <!--                            <div class="login-area">-->
-                            <!--                                <a href="#">Login / Register</a>-->
-                            <!--                            </div>-->
                         </div>
                         <!-- Nav End -->
 
@@ -173,11 +158,10 @@
                 <!-- Footer Nav -->
                 <div class="footer-nav">
                     <ul>
-                        <li class="active"><a href="{% url 'index' %}">Home</a></li>
-                        <li><a href="#">Recipes</a></li>
+                        <li class="active"><a href="{% url 'index' %}">Acceuil</a></li>
+                        <li><a href="{% url 'category_list' %}">Recettes</a></li>
                         <li><a href="#">About</a></li>
-                        <li><a href="#">Blog</a></li>
-                        <li><a href="#">Contact</a></li>
+                        <li><a href="{% url 'contact' %}">Contact</a></li>
                     </ul>
                 </div>
             </div>
