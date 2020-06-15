@@ -10,5 +10,6 @@ urlpatterns = [
     path("category/<slug:slug>", CategoryView.as_view(), name="category"),
     path("categories/", categories, name="category_list"),
     path("tag/<slug:slug>", TagView.as_view(), name="tag"),
+    path("about/", about, name="about")
 
 ]

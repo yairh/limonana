@@ -7,71 +7,29 @@
         <div class="row justify-content-center">
             <div class="col-12 col-lg-8 col-xl-9">
                 <div class="contact-content mb-100">
-                    <h4 class="mb-50">We love seeing your feedback</h4>
-                    <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nunc tristique justo id elit bibendum
-                        pharetra non vitae lectus. Mauris libero felis, dapibus a ultrices sed, commodo vitae odio. Sed
-                        auctor tellus quis arcu tempus. Lorem ipsum dolor sit amet, consectetur adipiscing elit. Etiam
-                        ac tincidunt nunc. Cras sed mollis erat.</p>
-
-                    <div class="row align-items-center mt-30 mb-50">
-                        <div class="col-12 col-lg-4">
-                            <!-- Single Contact Info -->
-                            <div class="single-contact-info d-flex align-items-center">
-                                <div class="icon mr-15">
-                                    <a href="https://www.pinterest.com/odelia0326/" target="_blank"><i class="fa fa-pinterest"
-                                                                               aria-hidden="true"></i></a>
-                                </div>
-                               <a href="https://www.pinterest.com/odelia0326/" target="_blank">Pinterest</a>
-                            </div>
-
-                            <div class="single-contact-info d-flex align-items-center">
-                                <div class="icon mr-15">
-                                    <a href="https://www.facebook.com/limonana.blog" target="_blank"><i class="fa fa-facebook"
-                                                                                aria-hidden="true"></i></a>
-                                </div>
-                               <a href="https://www.facebook.com/limonana.blog" target="_blank">Facebook</a>
-                            </div>
-
-                            <!-- Single Contact Info -->
-                            <div class="single-contact-info d-flex align-items-center">
-                                <div class="icon mr-15">
-                                    <a href="https://www.instagram.com/limonana.blog/?hl=fr" target="_blank"><i class="fa fa-instagram"
-                                                                                            aria-hidden="true"></i></a>
-                                </div>
-                                <a href="https://www.instagram.com/limonana.blog/?hl=fr" target="_blank">Instagram</a>
-                            </div>
-
-                            <!-- Single Contact Info -->
-<!--                            <div class="single-contact-info d-flex align-items-center">-->
-<!--                                <div class="icon mr-15">-->
-<!--                                    <img src="{% static 'img/core-img/message.png' %}" alt="">-->
-<!--                                </div>-->
-<!--                                <p>odelia@limonana.com</p>-->
-<!--                            </div>-->
-                        </div>
-<!--                        <div class="col-12 col-lg-8">-->
-<!--                            &lt;!&ndash; ##### Google Maps ##### &ndash;&gt;-->
-<!--                            <div class="map-area">-->
-<!--                                <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d22236.40558254599!2d-118.25292394686001!3d34.057682914027104!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x80c2c75ddc27da13%3A0xe22fdf6f254608f4!2z4Kay4Ka4IOCmj-CmnuCnjeCmnOCnh-CmsuCnh-CmuCwg4KaV4KeN4Kav4Ka-4Kay4Ka_4Kar4KeL4Kaw4KeN4Kao4Ka_4Kav4Ka84Ka-LCDgpq7gpr7gprDgp43gppXgpr_gpqgg4Kav4KeB4KaV4KeN4Kak4Kaw4Ka-4Ka34KeN4Kaf4KeN4Kaw!5e0!3m2!1sbn!2sbd!4v1532328708137"-->
-<!--                                        allowfullscreen></iframe>-->
-<!--                            </div>-->
-<!--                        </div>-->
+                    <h4 class="mb-50">Contact</h4>
+                    <div class="mb-50">
+                        <p>Une question? Une suggestion? Voire (on peut rêver) une soudaine envie d’exprimer une
+                            admiration
+                            infinie? Un petit mail et c’est dans la boîte! Ce sera un plaisir pour moi d’engager une
+                            conversation.</p>
                     </div>
 
                     <!-- Contact Form Area -->
                     <div class="contact-form-area mb-70">
-                        <h4 class="mb-50">Get In Touch</h4>
-
                         <form action="#" method="post">
+                            {% csrf_token %}
                             <div class="row">
                                 <div class="col-lg-6">
                                     <div class="form-group">
-                                        <input type="text" class="form-control" id="name" placeholder="Name">
+                                        <input type="text" class="form-control" id="name" name="name"
+                                               placeholder="Name">
                                     </div>
                                 </div>
                                 <div class="col-lg-6">
                                     <div class="form-group">
-                                        <input type="email" class="form-control" id="email" placeholder="E-mail">
+                                        <input type="email" class="form-control" id="email" name="email"
+                                               placeholder="E-mail">
                                     </div>
                                 </div>
                                 <div class="col-12">
@@ -95,7 +53,7 @@
 
                     <!-- Single Widget Area -->
                     <div class="single-widget-area author-widget mb-30">
-                       {% include 'odelia_widget.html' %}
+                        {% include 'odelia_widget.html' %}
                     </div>
 
                     <!-- Single Widget Area -->

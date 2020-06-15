@@ -1,0 +1,52 @@
+{% extends 'base.html' %}
+{% load static %}
+{% block main %}
+<!-- ##### Contact Area Start ##### -->
+<section class="contact-area section-padding-100">
+    <div class="container">
+        <div class="row justify-content-center">
+            <div class="col-12 col-lg-8 col-xl-9">
+                <div class="contact-content mb-100">
+                    <h4 class="mb-50">A Propos</h4>
+                    <img src="{% static 'ode_pic.jpg' %}" width="25%" class="float-left mr-30 mb-10">
+                    <p>J’aime cuisiner, mais à petites doses. Etrange paradoxe, sachant qu’apprécier une activité
+                        implique y consacrer du temps.</p>
+
+                    <p>Pourtant, je ne peux être plus fière que lorsque j’ai réalisé une recette qui répond à quatre
+                        critères: saine, délicieuse, rapide, et nécessitant peu d’ingrédients. Mon frigo est encore
+                        petit, et mon expérience limitée, mais j’essaie, je m’inspire, j’innove, et je recommence. Il ne
+                        me restait plus qu’à partager mes trouvailles, mes bonnes idées, à ceux qu’une cuisine saine,
+                        simple mais qui sait faire plaisir, intéresse.</p>
+
+                    <p>J’espère que cette plateforme sera également un lieu de partage de recettes, d’astuces, et
+                        autres bonnes idées de la part de personnes plus expérimentées qui ont eu le temps de façonner
+                        les meilleures bonnes pratiques culinaires dans un quotidien surmené.</p>
+
+                    <p>L’équation est simple : moins de temps pour préparer, c’est plus de temps pour s’assoir et
+                        déguster !</p>
+
+                </div>
+                <div class="row d-flex justify-content-around mt-30 mb-50">
+
+                    {% include 'social.html' %}
+                </div>
+            </div>
+
+            <div class="col-12 col-sm-9 col-md-6 col-lg-4 col-xl-3">
+                <div class="sidebar-area">
+
+                    <!-- Single Widget Area -->
+                    <div class="single-widget-area author-widget mb-30">
+                        {% include 'odelia_widget.html' %}
+                    </div>
+
+                    <!-- Single Widget Area -->
+                    {% include 'subscribe.html' %}
+                </div>
+
+            </div>
+        </div>
+    </div>
+</section>
+<!-- ##### Contact Area End ##### -->
+{% endblock %}

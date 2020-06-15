@@ -1,7 +1,9 @@
-from django.shortcuts import render, resolve_url
+from django.shortcuts import render, resolve_url, redirect
 from django.views.generic import ListView, DetailView, FormView
 from blog.models import Post, Category, Comment, Tag
 from blog.forms import CommentForm
+from django.core.mail import send_mail
+from limonana.settings import EMAIL_HOST_USER
 
 
 # Create your views here.
@@ -13,7 +15,27 @@ def index(request):
 
 def contact(request):
     categories = Category.objects.all()
+    if request.method == "POST":
+        name = request.POST.get("name")
+        email = request.POST.get("email")
+        content = request.POST.get("message")
+        message = f"Message from {name}:{email}:\n{content}"
+
+        send_mail(
+            f'Email from {name} on Limonana',
+            f'{message}',
+            EMAIL_HOST_USER,
+            ['odeliagh@gmail.com'],
+            fail_silently=False,
+        )
+
+        return redirect("contact")
+
     return render(request, "contact.html", {"categories": categories})
+
+
+def about(request):
+    return render(request, "about.html")
 
 
 def categories(request):
